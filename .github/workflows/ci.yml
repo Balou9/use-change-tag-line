@@ -13,6 +13,6 @@ jobs:
         uses: actions/checkout@v3
 
       - name: change the tag line of the text file
-        uses: Balou9/change-tag-line
+        uses: Balou9/change-tag-line@v0.1.0-alpha
         with:
           file-path: ./test_files/one.txt
