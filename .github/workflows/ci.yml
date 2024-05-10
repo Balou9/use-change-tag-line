@@ -20,3 +20,17 @@ jobs:
       - name: observe directory
         run: |
           ls
+
+      - name: configure git with access token 
+        run: |
+          git config user.name 'Balou9'
+          git config user.email 'eto.owosekun@gmail.com'
+          git remote add origin "https://$GITHUB_USERNAME:${{ secrets.GH_TOKEN }}@github.com/$GITHUB_REPOSITORY.git"
+
+      - name: Add changes (if applicable)
+        run: |
+          git add .
+          git commit -m "chore: adds modified text file"
+
+      - name: Push changes
+        run: git push origin main
