@@ -25,12 +25,12 @@ jobs:
         run: |
           git config user.name 'Balou9'
           git config user.email 'eto.owosekun@gmail.com'
-          git remote add origin "https://$GITHUB_USERNAME:${{ secrets.GH_TOKEN }}@github.com/$GITHUB_REPOSITORY.git"
+          git remote add origin-cc "https://Balou9:${{ secrets.GH_TOKEN }}@github.com/use-change-tag-line.git"
 
-      - name: Add changes (if applicable)
+      - name: Add changes
         run: |
           git add .
           git commit -m "chore: adds modified text file"
 
       - name: Push changes
-        run: git push origin main
+        run: git push origin-cc main
