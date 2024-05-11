@@ -25,7 +25,7 @@ jobs:
         run: |
           git config user.name 'Balou9'
           git config user.email 'eto.owosekun@gmail.com'
-          git remote add origin-cc https://github.com/Balou9/use-change-tag-line.git
+          git remote add origin-cc https://${{ secrets.GHUB_TOKEN }}@github.com/Balou9/use-change-tag-line.git
 
       - name: Add changes
         run: |
@@ -34,5 +34,3 @@ jobs:
 
       - name: Push changes
         run: git push origin-cc main
-        env:
-          GH_TOKEN: ${{ secrets.GHUB_TOKEN }}
