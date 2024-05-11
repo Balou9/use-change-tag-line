@@ -27,10 +27,7 @@ jobs:
           git config user.email 'eto.owosekun@gmail.com'
           git remote add origin-cc https://${{ secrets.GHUB_TOKEN }}@github.com/Balou9/use-change-tag-line.git
 
-      - name: Add changes
-        run: |
           git add .
           git commit -m "chore: adds modified text file"
 
-      - name: Push changes
-        run: git push origin-cc main
+          git push origin-cc main
