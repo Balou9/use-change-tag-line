@@ -25,7 +25,7 @@ jobs:
         run: |
           git config user.name 'Balou9'
           git config user.email 'eto.owosekun@gmail.com'
-          git remote add origin-cc https://Balou9@github.com/use-change-tag-line.git
+          git remote add origin-cc https://github.com/Balou9/use-change-tag-line.git
 
       - name: Add changes
         run: |
