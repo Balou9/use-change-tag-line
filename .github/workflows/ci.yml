@@ -49,4 +49,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: Balou9/modified-text-files:latest
+          tags: balou9/modified-text-files:latest
