@@ -50,3 +50,4 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: balou9/modified-text-files:latest
+          github-token: ${{ secrets.GHUB_TOKEN }}
