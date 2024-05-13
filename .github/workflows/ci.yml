@@ -8,6 +8,8 @@ on:
 jobs:
   test-change-tag-line:
     runs-on: ubuntu-latest
+    permissions:                # Job-level permissions configuration starts here
+      contents: write           # 'write' access to repository contents
     steps:
       - name: clone the repo
         uses: actions/checkout@v3
