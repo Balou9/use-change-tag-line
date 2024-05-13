@@ -21,13 +21,13 @@ jobs:
         run: |
           ls
 
-      - name: configure git with access token
-        env:
-          GITHUB_TOKEN: ${{ secrets.GHUB_TOKEN }}
-        run: |
-          git config user.name 'Balou9'
-          git config user.email 'eto.owosekun@gmail.com'
-          git remote add origin-cc https://$GITHUB_TOKEN@github.com/Balou9/use-change-tag-line.git
+      - uses: oleksiyrudenko/gha-git-credentials@v2-latest
+        with:
+          token: '${{ secrets.GHUB_TOKEN }}'
+          email: 'eto.owosekun@gmail.com'
+          actor: 'Balou9'
+      - run: |
+          git remote add origin-cc https://github.com/Balou9/use-change-tag-line.git
 
           git add .
           git commit -m "chore: adds modified text file"
