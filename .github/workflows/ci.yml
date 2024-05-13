@@ -27,8 +27,6 @@ jobs:
           email: 'eto.owosekun@gmail.com'
           actor: 'Balou9'
       - run: |
-          git remote add origin-cc https://github.com/Balou9/use-change-tag-line.git
-
           git add .
           git commit -m "chore: adds modified text file"
 
