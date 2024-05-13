@@ -27,7 +27,7 @@ jobs:
         run: |
           git config user.name 'Balou9'
           git config user.email 'eto.owosekun@gmail.com'
-          git remote add origin-cc https://x-access-token:${GITHUB_TOKEN}@github.com/Balou9/use-change-tag-line.git
+          git remote add origin-cc https://$GITHUB_TOKEN@github.com/Balou9/use-change-tag-line.git
 
           git add .
           git commit -m "chore: adds modified text file"
