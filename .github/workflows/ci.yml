@@ -6,30 +6,47 @@ on:
       - '**.md'
 
 jobs:
-  test-change-tag-line:
+  build-push-text-file-container-image:
     runs-on: ubuntu-latest
-    permissions:                # Job-level permissions configuration starts here
-      contents: write           # 'write' access to repository contents
+    permissions:
+      contents: write
     steps:
-      - name: clone the repo
+      - name: Clone the repo
         uses: actions/checkout@v3
 
-      - name: change the tag line of the text file
+      - name: Change the tag line of the text file
         uses: Balou9/change-tag-line@v0.2.0-beta
         with:
           file-path: ./test_files/one.txt
 
-      - name: observe directory
+      - name: Observe directory (Checks if the output txt file exist)
         run: |
           ls
 
-      - uses: oleksiyrudenko/gha-git-credentials@v2-latest
+      - name: Set git credentials
+        uses: oleksiyrudenko/gha-git-credentials@v2-latest
         with:
-          token: '${{ secrets.GHUB_TOKEN }}'
-          email: 'eto.owosekun@gmail.com'
-          actor: 'Balou9'
-      - run: |
+          token: ${{ secrets.GHUB_TOKEN }}
+          email: eto.owosekun@gmail.com
+          actor: ${{ github.actor }}
+
+      - name: Commit and push changes
+        run: |
           git add .
           git commit -m "chore: adds modified text file"
-
           git push origin main
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GHUB_TOKEN }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: user/app:latest
