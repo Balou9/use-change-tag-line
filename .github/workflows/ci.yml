@@ -46,6 +46,10 @@ jobs:
         run: |
           docker push ghcr.io/balou9/use-change-tag-line:modified-text-file
 
+      - name: List docker images
+        run: |
+          docker images ls
+
       - name: Logs out from github container registry
         run: |
           docker logout ghcr.io
