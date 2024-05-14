@@ -19,10 +19,6 @@ jobs:
         with:
           file-path: ./test_files/one.txt
 
-      - name: Observe directory (Checks if the output txt file exist)
-        run: |
-          ls
-
       - name: Set git credentials
         uses: oleksiyrudenko/gha-git-credentials@v2-latest
         with:
@@ -36,21 +32,20 @@ jobs:
           git commit -m "chore: adds modified text file"
           git push origin main
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+      - name: build docker image
+        run: |
+          docker build . \
+          --tag ghcr.io/balou9/use-change-tag-line:modified-text-file
+      
+      - name: login to github container registry
+        run: |
+          echo "${{ secrets.GHUB_TOKEN }}" | \
+          docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
-      - name: Login to GitHub Container Registry
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GHUB_TOKEN }}
+      - name: push image to github container registry
+        run: |
+          docker push ghcr.io/balou9/use-change-tag-line:modified-text-file
 
-      - name: Build and push
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          file: ./Dockerfile
-          push: true
-          tags: modified-text-files:latest
-          github-token: ${{ secrets.GHUB_TOKEN }}
+      - name: logs out from github container registry
+        run: |
+          docker logout ghcr.io
