@@ -35,7 +35,7 @@ jobs:
       - name: Build docker image
         run: |
           docker build . \
-          --tag ghcr.io/balou9/use-change-tag-line:modified-text-file
+          --tag ghcr.io/balou9/use-change-tag-line:latest
       
       - name: Login to github container registry
         run: |
@@ -44,7 +44,7 @@ jobs:
 
       - name: Push image to github container registry
         run: |
-          docker push ghcr.io/balou9/use-change-tag-line:modified-text-file
+          docker push ghcr.io/balou9/use-change-tag-line:latest
           docker images ls
 
       - name: Logs out from github container registry
@@ -53,7 +53,7 @@ jobs:
 
       - name: Post clean up - Removes text file and commit and push changes
         run: |
-          rm output.txt
+          rm ${{ env.output_file }}
           git add .
           git commit -m "chore: removes modified text file"
           git push origin main
