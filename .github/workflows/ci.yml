@@ -32,20 +32,27 @@ jobs:
           git commit -m "chore: adds modified text file"
           git push origin main
 
-      - name: build docker image
+      - name: Build docker image
         run: |
           docker build . \
           --tag ghcr.io/balou9/use-change-tag-line:modified-text-file
       
-      - name: login to github container registry
+      - name: Login to github container registry
         run: |
           echo "${{ secrets.GHUB_TOKEN }}" | \
           docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
-      - name: push image to github container registry
+      - name: Push image to github container registry
         run: |
           docker push ghcr.io/balou9/use-change-tag-line:modified-text-file
 
-      - name: logs out from github container registry
+      - name: Logs out from github container registry
         run: |
           docker logout ghcr.io
+
+      - name: Post clean up - Removes text file and commit and push changes
+        run: |
+          rm output.txt
+          git add .
+          git commit -m "chore: adds modified text file"
+          git push origin main
