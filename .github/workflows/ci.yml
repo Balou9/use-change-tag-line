@@ -54,5 +54,5 @@ jobs:
         run: |
           rm output.txt
           git add .
-          git commit -m "chore: adds modified text file"
+          git commit -m "chore: removes modified text file"
           git push origin main
