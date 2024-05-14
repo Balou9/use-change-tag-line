@@ -52,5 +52,5 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: balou9/modified-text-files:latest
+          tags: modified-text-files:latest
           github-token: ${{ secrets.GHUB_TOKEN }}
