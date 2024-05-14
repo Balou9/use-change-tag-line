@@ -45,9 +45,6 @@ jobs:
       - name: Push image to github container registry
         run: |
           docker push ghcr.io/balou9/use-change-tag-line:modified-text-file
-
-      - name: List docker images
-        run: |
           docker images ls
 
       - name: Logs out from github container registry
