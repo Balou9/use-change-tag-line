@@ -15,6 +15,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Change the tag line of the text file
+        id: change_tag_line
         uses: Balou9/change-tag-line@v0.2.0-beta
         with:
           file-path: ./test_files/one.txt
@@ -54,7 +55,7 @@ jobs:
 
       - name: Post clean up - Removes text file and commit and push changes
         run: |
-          rm output.txt
+          rm ${{ steps.change_tag_line.outputs.output_file }}
           git add .
           git commit -m "chore: removes modified text file"
           git push origin main
