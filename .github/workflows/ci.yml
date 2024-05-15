@@ -12,7 +12,7 @@ jobs:
       contents: write
     steps:
       - name: Clone the repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4.1.4
 
       - name: Change the tag line of the text file
         id: change_tag_line
@@ -39,7 +39,7 @@ jobs:
           --tag ghcr.io/balou9/use-change-tag-line:latest
       
       - name: Login to GitHub Container Registry
-        uses: docker/login-action@v3
+        uses: docker/login-action@v3.1.0
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
