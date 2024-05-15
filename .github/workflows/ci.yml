@@ -54,8 +54,10 @@ jobs:
           docker logout ghcr.io
 
       - name: Post clean up - Removes text file and commit and push changes
+        env: 
+          OUTPUT_FILE: ${{ steps.change_tag_line.outputs.output_file }}
         run: |
-          rm ${{ steps.change_tag_line.outputs.output_file }}
+          rm $OUTPUT_FILE
           git add .
           git commit -m "chore: removes modified text file"
           git push origin main
