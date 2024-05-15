@@ -55,6 +55,7 @@ jobs:
 
       - name: Post clean up - Removes text file and commit and push changes
         run: |
+          rm output.txt
           git add .
           git commit -m "chore: removes modified text file"
           git push origin main
